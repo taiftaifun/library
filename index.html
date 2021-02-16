@@ -2,22 +2,30 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div id="input-wrapper">
-        <ul id="data">
+    <button id="newbook-btn">New Book</button>
+    <div id="form-wrapper">
+        <form id="book-form">
             <li>
-                <span>Author</span><input id="author" type="text">
+                <label for="title">Title</label>
+                <input required id="title-input" type="text" name="title">
             </li>
             <li>
-                <span>Title</span><input id="title" type="text">
+                <label for="author">Author</label>
+                <input required id="author-input" type="text" name="author">
             </li>
             <li>
-                <span>Number of pages</span><input id="pages" type="text">
+                <label for="pages">Number of pages</label>
+                <input required id="pages-input" type="number" name="pages">
             </li>
             <li>
-                <span>Read</span><input id="read" type="checkbox"> 
+                <label for="read">Read</label>
+                <input required id="read-input" type="checkbox" name="read">
             </li>
-            <button id="add">Add Book</button>
-        </ul>
+            <button type="button" id="submit-btn">Add Book</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+        </form>
+    </div>
+    <div id="library-shelf">
     </div>
 </body>
 <script src="index.js"></script>

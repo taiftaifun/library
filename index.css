@@ -1,7 +1,61 @@
-#data {
-    list-style-type: none;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-#input-wrapper {
+body {
+    margin-top: 1rem;
+    font-size: 14px;
+}
+
+#newbook-btn {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+#form-wrapper {
     background-color: aquamarine;
+    width: 25rem;
+    padding: 1rem;
+    margin: 0 auto;
+    display: none;
+    margin-bottom: 1rem;
+}
+
+#book-form {
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.2rem 0;
+}
+
+#submit-btn {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#cancel-btn {
+    width: 20%;
+}
+
+#library-shelf {
+    width: 90%;
+    margin: 0 auto;
+    background-color: blueviolet;
+    display: grid;
+    grid-template-columns: repeat(5, 19%);
+}
+
+.book {
+    background-color: chartreuse;
+    font-size: 0.7rem;
+    border-color: coral;
+    border-style: solid;
+    padding: 0.5rem;
 }
