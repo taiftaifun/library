@@ -5,6 +5,7 @@ const formWrapper = document.querySelector("#form-wrapper");
 newBookBtn.addEventListener("click", showForm);
 const submitBtn = document.querySelector("#submit-btn");
 submitBtn.addEventListener("click", addBookToLibrary);
+submitBtn.disabled = true;
 const cancelBtn = document.querySelector("#cancel-btn");
 cancelBtn.addEventListener("click", hideForm);
 const titleInput = document.querySelector("#title-input")
@@ -13,6 +14,17 @@ const pagesInput = document.querySelector("#pages-input")
 const readInput = document.querySelector("#read-input")
 const bookForm = document.querySelector("#book-form")
 const libraryShelf = document.querySelector("#library-shelf")
+const typeInputs = Array.from(document.querySelectorAll(".type-input"));
+typeInputs.forEach(element => element.addEventListener("keyup", checkInput))
+
+function checkInput() {
+    submitBtn.disabled = false;
+    typeInputs.forEach(input => {
+        if(input.value.trim() == "") {
+            submitBtn.disabled = true;
+        }
+    })
+}
 
 function Book(title, author, pages, read) {
     this.title = title,
@@ -30,6 +42,7 @@ function addBookToLibrary() {
     bookLibrary.push(newBook);
     hideForm();
     bookForm.reset();
+    submitBtn.disabled = true;
     console.log(bookLibrary);
     renderBook(newBook);
 }

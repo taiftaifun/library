@@ -7,19 +7,19 @@
         <form id="book-form">
             <li>
                 <label for="title">Title</label>
-                <input required id="title-input" type="text" name="title">
+                <input class="type-input" id="title-input" type="text" name="title">
             </li>
             <li>
                 <label for="author">Author</label>
-                <input required id="author-input" type="text" name="author">
+                <input class="type-input" id="author-input" type="text" name="author">
             </li>
             <li>
                 <label for="pages">Number of pages</label>
-                <input required id="pages-input" type="number" name="pages">
+                <input min="0" class="type-input" id="pages-input" type="number" name="pages">
             </li>
             <li>
                 <label for="read">Read</label>
-                <input required id="read-input" type="checkbox" name="read">
+                <input id="read-input" type="checkbox" name="read">
             </li>
             <button type="button" id="submit-btn">Add Book</button>
             <button type="button" id="cancel-btn">Cancel</button>
