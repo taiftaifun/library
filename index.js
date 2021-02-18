@@ -1,4 +1,5 @@
 let bookLibrary = [];
+let bookId = 0;
 
 const newBookBtn = document.querySelector("#newbook-btn");
 const formWrapper = document.querySelector("#form-wrapper");
@@ -26,19 +27,22 @@ function checkInput() {
     })
 }
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, id) {
     this.title = title,
     this.author = author,
     this.pages = pages,
     this.read = read
+    this.id = id;
 }
 
 function addBookToLibrary() {
+    bookId ++;
     let title = titleInput.value;
     let author = auhorInput.value;
     let pages = pagesInput.value;
-    let read = (readInput.value == "on" ? true : false);
-    let newBook = new Book(title, author, pages, read);
+    let read = (readInput.value == "on" ? "READ" : "NOT READ");
+    let id = bookId;
+    let newBook = new Book(title, author, pages, read, id);
     bookLibrary.push(newBook);
     hideForm();
     bookForm.reset();
@@ -57,12 +61,23 @@ function hideForm() {
     newBookBtn.setAttribute("style", "display: block");
 }
 
+function deleteBook(e) {
+    let targetedId = e.target.parentElement.id;
+    document.querySelector(`[id='${targetedId}']`).remove();
+    bookLibrary = bookLibrary.filter(book => book.id != targetedId);
+    bookId --;
+}
+
 function renderBook(book) {
     let singleBook = document.createElement("div");
     singleBook.setAttribute("class", "book");
-    singleBook.innerHTML = `<div>Title: ${book.title}</div>
+    singleBook.setAttribute("id", bookId);
+    singleBook.innerHTML = `<button class="delete-btn">X</button>
+                            <div>Title: ${book.title}</div>
                             <div>Author: ${book.author}</div>
                             <div>Pages: ${book.pages}</div>
-                            <div>Read: ${book.read}</div>`;
+                            <button class="read-btn">${book.read}</button>`;
+    let deleteBtn = singleBook.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", deleteBook);
     libraryShelf.appendChild(singleBook);
 }
