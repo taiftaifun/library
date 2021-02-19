@@ -31,8 +31,8 @@ function Book(title, author, pages, read, id) {
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.read = read
-    this.id = id;
+    this.read = read,
+    this.id = id
 }
 
 function addBookToLibrary() {
@@ -40,7 +40,7 @@ function addBookToLibrary() {
     let title = titleInput.value;
     let author = auhorInput.value;
     let pages = pagesInput.value;
-    let read = (readInput.value == "on" ? "READ" : "NOT READ");
+    let read = (readInput.checked ? "READ" : "NOT READ");
     let id = bookId;
     let newBook = new Book(title, author, pages, read, id);
     bookLibrary.push(newBook);
@@ -68,16 +68,30 @@ function deleteBook(e) {
     bookId --;
 }
 
+function toggleRead(e) {
+    bookId = e.target.parentElement.id;
+    bookIndex = bookLibrary.findIndex(book => book.id = bookId);
+    if(e.target.textContent == "READ") {
+        e.target.textContent = "NOT READ";
+        bookLibrary[bookIndex].read = "NOT READ";
+    } else if(e.target.textContent == "NOT READ") {
+        e.target.textContent = "READ";
+        bookLibrary[bookIndex].read = "READ";
+    }
+}
+
 function renderBook(book) {
     let singleBook = document.createElement("div");
     singleBook.setAttribute("class", "book");
     singleBook.setAttribute("id", bookId);
     singleBook.innerHTML = `<button class="delete-btn">X</button>
-                            <div>Title: ${book.title}</div>
-                            <div>Author: ${book.author}</div>
-                            <div>Pages: ${book.pages}</div>
+                            <div class="book-line">Title: ${book.title}</div>
+                            <div class="book-line">Author: ${book.author}</div>
+                            <div class="book-line">Pages: ${book.pages}</div>
                             <button class="read-btn">${book.read}</button>`;
     let deleteBtn = singleBook.querySelector(".delete-btn");
     deleteBtn.addEventListener("click", deleteBook);
+    let readBtn = singleBook.querySelector(".read-btn");
+    readBtn.addEventListener("click", toggleRead);
     libraryShelf.appendChild(singleBook);
 }
